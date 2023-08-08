@@ -55,11 +55,22 @@ hint: to the same ref. You may want to first integrate the remote changes
 hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
-Step 16:	git rebase origin/main
-warning: unable to rmdir 'freestyle_demo': Directory not empty
-Successfully rebased and updated refs/heads/main.
+Step 16:	git fetch origin main
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 6 (delta 3), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), 2.21 KiB | 151.00 KiB/s, done.
+From github.com:ChanikyaVarmaNalla/freestyle_demo
+ * branch            main       -> FETCH_HEAD
+   1a56163..ddb4f29  main       -> origin/main
 
-Step 17:	git push origin main
+Step 17:  git merge origin/main
+Merge made by the 'ort' strategy.
+ README.md | 69 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 69 insertions(+)
+
+Step 18:	git push origin main
 Enumerating objects: 52, done.
 Counting objects: 100% (52/52), done.
 Delta compression using up to 8 threads
