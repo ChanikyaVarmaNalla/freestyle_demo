@@ -3,8 +3,11 @@ This is my Jenkins freestyle demo git
 
 # These are the steps I followed
 Step 1:	git init
+
 Step 2:	ssh-keygen -t ed25519 -C "nchanikyavarma04@gmail.com"
+
 Step 3:	set the ssh key in github.com
+
 Step 4:	git clone git@github.com:ChanikyaVarmaNalla/freestyle_demo.git
 
 Step 5:	git status
