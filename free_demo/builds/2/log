@@ -1,0 +1,10 @@
+Started by user [8mha:////4A35Cjhq1VBzCZt4roUt9bLXxrBDT5+lSMr/CcQq7hLuAAAAmh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyREgY+/dLi1CL95IzEvMzsykQAXH2B9MMAAAA=[0mchanikya varma nalla
+Running as SYSTEM
+Building in workspace C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo
+[free_demo] $ cmd /c call C:\Users\CHANIK~1\AppData\Local\Temp\jenkins6131190120618195747.bat
+
+C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo>echo "Hello! Jenkins, 08-08-2023 16:55:02.13" 
+"Hello! Jenkins, 08-08-2023 16:55:02.13"
+
+C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo>exit 0 
+Finished: SUCCESS
