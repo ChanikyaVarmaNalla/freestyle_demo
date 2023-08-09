@@ -1,6 +1,6 @@
 # Factorial of a number
-n = 5
-fact = 1
-for i in range(n, 1, -1):
-    fact = fact * i
-print(f"Factorial of {n} is {fact}")
+k = 5
+sol = 1
+for i in range(k, 0, -1):
+    sol = sol * i
+print(f"Factorial = {sol}")
