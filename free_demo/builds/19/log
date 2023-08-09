@@ -1,0 +1,25 @@
+Started by user [8mha:////4A35Cjhq1VBzCZt4roUt9bLXxrBDT5+lSMr/CcQq7hLuAAAAmh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyREgY+/dLi1CL95IzEvMzsykQAXH2B9MMAAAA=[0mchanikya varma nalla
+Running as SYSTEM
+Building in workspace C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url git@github.com:ChanikyaVarmaNalla/freestyle_demo.git # timeout=10
+Fetching upstream changes from git@github.com:ChanikyaVarmaNalla/freestyle_demo.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.40.0.windows.1'
+ > git.exe fetch --tags --force --progress -- git@github.com:ChanikyaVarmaNalla/freestyle_demo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+Checking out Revision fea749c54ae24f783f042142cf44ed0b8757cd82 (refs/remotes/origin/master)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f fea749c54ae24f783f042142cf44ed0b8757cd82 # timeout=10
+Commit message: "First Commit"
+ > git.exe rev-list --no-walk fea749c54ae24f783f042142cf44ed0b8757cd82 # timeout=10
+[free_demo] $ cmd /c call C:\Users\CHANIK~1\AppData\Local\Temp\jenkins8939430581271431667.bat
+
+C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo>echo "Hello! Jenkins, 09-08-2023 10:27:50.64" 
+"Hello! Jenkins, 09-08-2023 10:27:50.64"
+
+C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo>exit 0 
+Finished: SUCCESS
