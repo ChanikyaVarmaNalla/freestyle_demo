@@ -1,0 +1,57 @@
+Started by user [8mha:////4A35Cjhq1VBzCZt4roUt9bLXxrBDT5+lSMr/CcQq7hLuAAAAmh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyREgY+/dLi1CL95IzEvMzsykQAXH2B9MMAAAA=[0mchanikya varma nalla
+Running as SYSTEM
+Building in workspace C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url git@github.com:ChanikyaVarmaNalla/freestyle_demo.git # timeout=10
+Fetching upstream changes from git@github.com:ChanikyaVarmaNalla/freestyle_demo.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.40.0.windows.1'
+ > git.exe fetch --tags --force --progress -- git@github.com:ChanikyaVarmaNalla/freestyle_demo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+Checking out Revision fea749c54ae24f783f042142cf44ed0b8757cd82 (refs/remotes/origin/master)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f fea749c54ae24f783f042142cf44ed0b8757cd82 # timeout=10
+Commit message: "First Commit"
+ > git.exe rev-list --no-walk fea749c54ae24f783f042142cf44ed0b8757cd82 # timeout=10
+[free_demo] $ cmd /c call C:\Users\CHANIK~1\AppData\Local\Temp\jenkins5750496255956697394.bat
+
+C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo>echo "Hello! Jenkins, 09-08-2023 14:56:35.92" 
+"Hello! Jenkins, 09-08-2023 14:56:35.92"
+
+C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo>exit 0 
+The recommended git tool is: NONE
+No credentials specified
+Pushing HEAD to branch main at repo origin
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.40.0.windows.1'
+ > git.exe push git@github.com:ChanikyaVarmaNalla/freestyle_demo.git HEAD:main # timeout=10
+ERROR: Failed to push branch main to origin
+hudson.plugins.git.GitException: Command "git.exe push git@github.com:ChanikyaVarmaNalla/freestyle_demo.git HEAD:main" returned status code 1:
+stdout: 
+stderr: To github.com:ChanikyaVarmaNalla/freestyle_demo.git
+ ! [rejected]        HEAD -> main (non-fast-forward)
+error: failed to push some refs to 'github.com:ChanikyaVarmaNalla/freestyle_demo.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. Check out this branch and integrate the remote changes
+hint: (e.g. 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl.launchCommandIn(CliGitAPIImpl.java:2734)
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl.launchCommandWithCredentials(CliGitAPIImpl.java:2111)
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl.access$500(CliGitAPIImpl.java:87)
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl$8.execute(CliGitAPIImpl.java:2825)
+	at hudson.plugins.git.GitPublisher.perform(GitPublisher.java:316)
+	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:20)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:816)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.performAllBuildSteps(AbstractBuild.java:765)
+	at hudson.model.Build$BuildExecution.post2(Build.java:179)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.post(AbstractBuild.java:709)
+	at hudson.model.Run.execute(Run.java:1922)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:44)
+	at hudson.model.ResourceController.execute(ResourceController.java:101)
+	at hudson.model.Executor.run(Executor.java:442)
+Build step 'Git Publisher' marked build as failure
+Finished: FAILURE
