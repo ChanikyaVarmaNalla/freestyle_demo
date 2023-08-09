@@ -1,12 +1,6 @@
-#adding name to the list until user gives end
-l=[]
-while len(l)==0 or len(l)!=0:
-    n=input('name=')
-    if n not in l:
-        l.append(n)
-        if n=='end':
-            l.remove('end')
-            break
-    if n in l:
-        continue
-print('list of names:', l)
+# Factorial of a number
+n = 5
+fact = 1
+for i in range(n, 1, -1):
+    fact = fact * i
+print(f"Factorial of {n} is {fact}")
