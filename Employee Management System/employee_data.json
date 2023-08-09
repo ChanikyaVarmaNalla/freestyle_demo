@@ -1,0 +1,104 @@
+{
+  "employees": [
+    {
+      "first_name": "Tony",
+      "last_name": "Stark",
+      "age": 40,
+      "experience": 15,
+      "salary": 1000000,
+      "id": 1,
+      "skills": ["Engineering", "Inventing", "Leadership"],
+      "qualifications": ["PhD in Engineering", "Master's in Physics", "Business Administration"]
+    },
+    {
+      "first_name": "Steve",
+      "last_name": "Rogers",
+      "age": 100,
+      "experience": 70,
+      "salary": 500000,
+      "id": 2,
+      "skills": ["Leadership", "Combat", "Tactical Strategy"],
+      "qualifications": ["Super Soldier Serum", "Advanced Combat Training", "Military Tactics"]
+    },
+    {
+      "first_name": "Natasha",
+      "last_name": "Romanoff",
+      "age": 35,
+      "experience": 10,
+      "salary": 800000,
+      "id": 3,
+      "skills": ["Espionage", "Martial Arts", "Infiltration"],
+      "qualifications": ["Advanced Combat Training", "Master of Disguise", "Multilingual"]
+    },
+    {
+      "first_name": "Thor",
+      "last_name": "Odinson",
+      "age": 1500,
+      "experience": 1000,
+      "salary": 2000000,
+      "id": 4,
+      "skills": ["God of Thunder", "Combat", "Weather Manipulation"],
+      "qualifications": ["Mjolnir Wielder", "Warrior Training", "King of Asgard"]
+    },
+    {
+      "first_name": "Peter",
+      "last_name": "Parker",
+      "age": 21,
+      "experience": 3,
+      "salary": 300000,
+      "id": 5,
+      "skills": ["Web-Slinging", "Scientific Knowledge", "Agility"],
+      "qualifications": ["High School Graduate", "Photographic Memory", "Acrobatics"]
+    },
+    {
+      "first_name": "Bruce",
+      "last_name": "Banner",
+      "age": 45,
+      "experience": 20,
+      "salary": 1500000,
+      "id": 6,
+      "skills": ["Scientific Research", "Transformation", "Gamma Radiation"],
+      "qualifications": ["PhD in Physics", "Medical Expertise", "Controlled Rage"]
+    },
+    {
+      "first_name": "Wanda",
+      "last_name": "Maximoff",
+      "age": 30,
+      "experience": 5,
+      "salary": 600000,
+      "id": 7,
+      "skills": ["Reality Manipulation", "Telekinesis", "Energy Projection"],
+      "qualifications": ["Specialized Training", "Mastery of Chaos Magic", "Telepathic Resistance"]
+    },
+    {
+      "first_name": "Clint",
+      "last_name": "Barton",
+      "age": 40,
+      "experience": 15,
+      "salary": 700000,
+      "id": 8,
+      "skills": ["Archery", "Tactical Skills", "Marksmanship"],
+      "qualifications": ["S.H.I.E.L.D. Agent", "Expert Assassin", "Expertise in Weaponry"]
+    },
+    {
+      "first_name": "T'Challa",
+      "last_name": "Wakanda",
+      "age": 35,
+      "experience": 10,
+      "salary": 900000,
+      "id": 9,
+      "skills": ["Black Panther Abilities", "Leadership", "Vibranium Knowledge"],
+      "qualifications": ["King of Wakanda", "Enhanced Senses", "Masterful Combatant"]
+    },
+    {
+      "first_name": "Stephen",
+      "last_name": "Strange",
+      "age": 45,
+      "experience": 8,
+      "salary": 1200000,
+      "id": 10,
+      "skills": ["Mystical Arts", "Sorcery", "Dimensional Travel"],
+      "qualifications": ["Doctor of Medicine", "Master of the Mystic Arts", "Temporal Manipulation"]
+    }
+  ]
+}

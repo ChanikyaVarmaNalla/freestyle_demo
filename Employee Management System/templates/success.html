@@ -1,0 +1,48 @@
+<!-- success.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Employee Management System</h1>
+        <a class="button" href="/logout">Logout</a>
+    </div>
+    <div class="container">
+        {% if action == 'signup' %}
+            <h1>Signup Successful!</h1>
+            <p>Welcome, {{ username }}!</p>
+            {% if old_users %}
+                <h2>Existing Users:</h2>
+                <ul>
+                    {% for user in old_users %}
+                        <li>{{ user.username }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No existing users found.</p>
+            {% endif %}
+        {% elif action == 'employee_insert' %}
+            {% if new_employee %}
+                <h1>Employee Inserted Successfully</h1>
+                <h2>New Employee Details:</h2>
+                <p><strong>Employee ID:</strong> {{ new_employee.id }}</p>
+                <p><strong>First Name:</strong> {{ new_employee.first_name }}</p>
+                <p><strong>Last Name:</strong> {{ new_employee.last_name }}</p>
+                <p><strong>Age:</strong> {{ new_employee.age }}</p>
+                <p><strong>Experience:</strong> {{ new_employee.experience }}</p>
+                <p><strong>Salary:</strong> {{ new_employee.salary }}</p>
+                <p><strong>Skills:</strong> {{ new_employee.skills }}</p>
+                <p><strong>Qualifications:</strong> {{ new_employee.qualifications }}</p>
+            {% else %}
+                <p>No employee details available.</p>
+            {% endif %}
+        {% else %}
+            <p>Action not recognized.</p>
+        {% endif %}
+        <p><a href="/employee_data">Back to Employee Data</a></p>
+    </div>
+</body>
+</html>

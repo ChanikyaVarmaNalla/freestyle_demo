@@ -1,0 +1,60 @@
+<!-- insert_employee.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insert Employee</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Employee Management System</h1>
+        <a class="button" href="/logout">Logout</a>
+    </div>
+    <div class="container">
+        <h1>Insert Employee</h1>
+        <form action="{{ url_for('insert_employee') }}" method="post">
+            <div>
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div>
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div>
+                <label for="experience">Experience:</label>
+                <input type="number" id="experience" name="experience" required>
+            </div>
+            <div>
+                <label for="salary">Salary:</label>
+                <input type="number" id="salary" name="salary" step="0.01" required>
+            </div>
+            <div>
+                <label for="skills">Skills (comma-separated):</label>
+                <input type="text" id="skills" name="skills" required>
+            </div>
+            <div>
+                <label for="qualifications">Qualifications (comma-separated):</label>
+                <input type="text" id="qualifications" name="qualifications" required>
+            </div>
+            <button type="submit">Add Employee</button>
+        </form>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for category, message in messages %}
+                    {% if category == 'success' %}
+                        <li style="color: green;">{{ message }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
