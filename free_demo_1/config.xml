@@ -1,70 +1,62 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@1207.1209.v69351208a_5a_7">
-  <actions>
-    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@2.2121.vd87fb_6536d1e"/>
-    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@2.2121.vd87fb_6536d1e">
-      <jobProperties/>
-      <triggers/>
-      <parameters/>
-      <options/>
-    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
-  </actions>
+  <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@3536.vb_8a_6628079d5">
     <script>pipeline {
     agent any
-
+    
     environment {
-        DOCKER_REGISTRY_CREDENTIALS = credentials(&apos;da0a243d-d4c3-44de-bfed-64a982c8dab5&apos;)
-        DOCKER_IMAGE_NAME = &apos;my-docker-build-image&apos;
-        CONTAINER_NAME = &apos;my-docker-container&apos;
+        DOCKER_REGISTRY = &quot;https://index.docker.io/v1/&quot;
+        DOCKER_USERNAME = &quot;chanikyavarmanalla&quot;
     }
-
+    
     stages {
-        stage(&apos;Checkout SCM&apos;) {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage(&apos;Build Docker Image&apos;) {
+        stage(&apos;Clone Repository&apos;) {
             steps {
                 script {
-                    def dockerImage = docker.build(DOCKER_IMAGE_NAME, &apos;-f Dockerfile .&apos;)
+                    // Clone the repository
+                    checkout([$class: &apos;GitSCM&apos;, branches: [[name: &apos;*/main&apos;]], userRemoteConfigs: [[url: &quot;https://github.com/ChanikyaVarmaNalla/freestyle_demo.git&quot;]]])
                 }
             }
         }
-
-        stage(&apos;Push Docker Image&apos;) {
+        
+        stage(&apos;Build and Push Docker Image&apos;) {
             steps {
                 script {
-                    docker.withRegistry(&apos;https://docker.io&apos;, DOCKER_REGISTRY_CREDENTIALS) {
-                	       docker.image(DOCKER_IMAGE_NAME).push()
+                    def imageName = sh(script: &quot;grep &apos;FROM &apos; ${WORKSPACE}/Dockerfile | awk &apos;{print \$2}&apos;&quot;, returnStdout: true).trim()
+                    env.IMAGE_NAME = imageName.substring(imageName.lastIndexOf(&apos;/&apos;) + 1) // Get the last part after the last &apos;/&apos;
+                    
+                    // Build the Docker image
+                    docker.build(&quot;${DOCKER_USERNAME}/${env.IMAGE_NAME}:latest&quot;, &quot;--file ${WORKSPACE}/Dockerfile ${WORKSPACE}&quot;)
+                    
+                    // Login to Docker Hub
+                    docker.withRegistry(&quot;${DOCKER_REGISTRY}&quot;, &apos;da0a243d-d4c3-44de-bfed-64a982c8dab5&apos;) {
+                        // Push the Docker image to Docker Hub
+                        docker.image(&quot;${DOCKER_USERNAME}/${env.IMAGE_NAME}:latest&quot;).push()
                     }
                 }
             }
         }
-
+        
         stage(&apos;Run Docker Image&apos;) {
             steps {
                 script {
-                    def myContainer = docker.container().from(docker.image(DOCKER_IMAGE_NAME).run(&quot;-d&quot;, name: CONTAINER_NAME))
+                    // Run the built Docker image
+                    docker.image(&quot;${DOCKER_USERNAME}/${env.IMAGE_NAME}:latest&quot;).run(&apos;-p 8080:80 -d&apos;)
                 }
             }
         }
     }
-
+    
     post {
         always {
+            // Clean up - stop and remove the Docker container
             script {
-                try {
-                    def myContainer = docker.image(DOCKER_IMAGE_NAME).container(CONTAINER_NAME)
-                    myContainer.stop()
-                    echo &quot;Container stopped successfully&quot;
-                } catch (Exception e) {
-                    echo &quot;Error stopping container: ${e}&quot;
+                docker.image(&quot;${DOCKER_USERNAME}/${env.IMAGE_NAME}:latest&quot;).inside(&apos;--rm&apos;, &apos;--entrypoint&apos;, &apos;&apos;) {
+                    sh &apos;docker stop container_name&apos;
                 }
             }
         }
