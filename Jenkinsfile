@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build(DOCKER_IMAGE_NAME, '-f Dockerfile .')
+                    def dockerImage = docker.build(DOCKER_IMAGE_NAME, '-f Dockerfile .')
                 }
             }
         }
@@ -47,6 +47,7 @@ pipeline {
                 try {
                     def myContainer = docker.image(DOCKER_IMAGE_NAME).container(CONTAINER_NAME)
                     myContainer.stop()
+                    echo "Container stopped successfully"
                 } catch (Exception e) {
                     echo "Error stopping container: ${e}"
                 }
