@@ -12,55 +12,26 @@
   <description>it is pushing docker images </description>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@3536.vb_8a_6628079d5">
-    <script>pipeline {
-    agent any 
-    environment {
-        //once you sign up for Docker hub, use that user_id here
-        registry = &quot;chanikyavarmanalla/my-docker-image&quot;
-        //- update your credentials ID after creating credentials for connecting to Docker Hub
-        registryCredential = &apos;14ae160d-e567-46fc-a107-073fa8e06815&apos;
-        dockerImage = &apos;&apos;
-    }
-    
-    stages {
-        stage(&apos;Cloning Git&apos;) {
-            steps {
-                checkout([$class: &apos;GitSCM&apos;, branches: [[name: &apos;*/main&apos;]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: &apos;&apos;, url: &apos;git@github.com:ChanikyaVarmaNalla/freestyle_demo.git&apos;]]])       
-            }
-        }
-    
-    // Building Docker images
-    stage(&apos;Building image&apos;) {
-      steps{
-        script {
-          dockerImage = docker.build registry
-        }
-      }
-    }
-    
-     // Uploading Docker images into Docker Hub
-    stage(&apos;Upload Image&apos;) {
-     steps{    
-         script {
-            docker.withRegistry( &apos;&apos;, registryCredential ) {
-            dockerImage.push()
-            }
-        }
-      }
-    }
-    
-    // Running Docker container, make sure port 8096 is opened in 
-    stage(&apos;Docker Run&apos;) {
-     steps{
-         script {
-           bat &quot;docker run %registry%&quot;
-         }
-      }
-    }
-  }
-}</script>
-    <sandbox>true</sandbox>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@3536.vb_8a_6628079d5">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@4.14.3">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+          <url>git@github.com:ChanikyaVarmaNalla/freestyle_demo.git</url>
+          <credentialsId>d3f909f4-39d4-4aa5-b057-1db7d1379fc7</credentialsId>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+        <hudson.plugins.git.BranchSpec>
+          <name>*/main</name>
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="empty-list"/>
+      <extensions/>
+    </scm>
+    <scriptPath>Jenkinsfile</scriptPath>
+    <lightweight>true</lightweight>
   </definition>
   <triggers/>
   <disabled>false</disabled>
