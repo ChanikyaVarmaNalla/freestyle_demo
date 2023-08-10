@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY_CREDENTIALS = credentials('75908850-c776-4f90-8bdc-99c635539741')
+        DOCKER_REGISTRY_CREDENTIALS = credentials('da0a243d-d4c3-44de-bfed-64a982c8dab5')
         DOCKER_IMAGE_NAME = 'my-docker-build-image'
         CONTAINER_NAME = 'my-docker-container'
     }
