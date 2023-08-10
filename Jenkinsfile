@@ -35,8 +35,8 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                    def myContainer = docker.image(DOCKER_IMAGE_NAME).container(CONTAINER_NAME)
-                    myContainer.start("-d")
+                    def myContainer = docker.image(DOCKER_IMAGE_NAME)
+                    def myContainer = dockerImage.run("-d", name: CONTAINER_NAME)
                 }
             }
         }
