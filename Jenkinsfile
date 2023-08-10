@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_REGISTRY_CREDENTIALS = credentials('c22e28f9-2cda-4794-9907-79ecefbbb0ab')
         DOCKER_IMAGE_NAME = 'my-docker-build-image'
+        CONTAINER_NAME = 'my-docker-container'
     }
 
     stages {
@@ -34,7 +35,8 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                    docker.image(DOCKER_IMAGE_NAME).run()
+                    def myContainer = docker.image(DOCKER_IMAGE_NAME).container(CONTAINER_NAME)
+                    myContainer.start("-d")
                 }
             }
         }
@@ -43,7 +45,12 @@ pipeline {
     post {
         always {
             script {
-                docker.image(DOCKER_IMAGE_NAME).stop()
+                try {
+                    def myContainer = docker.image(DOCKER_IMAGE_NAME).container(CONTAINER_NAME)
+                    myContainer.stop()
+                } catch (Exception e) {
+                    echo "Error stopping container: ${e}"
+                }
             }
         }
     }
