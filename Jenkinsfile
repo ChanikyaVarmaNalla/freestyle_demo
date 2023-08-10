@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY_CREDENTIALS = credentials('4a72d381-c972-4864-96fd-2862da669ec7')
+        DOCKER_REGISTRY_CREDENTIALS = credentials('c22e28f9-2cda-4794-9907-79ecefbbb0ab')
         DOCKER_IMAGE_NAME = 'my-docker-build-image'
         GIT_REPO_URL = 'https://github.com/ChanikyaVarmaNalla/freestyle_demo.git'
     }

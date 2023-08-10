@@ -17,7 +17,7 @@
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
-          <url>git@github.com:ChanikyaVarmaNalla/freestyle_demo.git</url>
+          <url>https://github.com/ChanikyaVarmaNalla/freestyle_demo.git</url>
           <credentialsId>c22e28f9-2cda-4794-9907-79ecefbbb0ab</credentialsId>
         </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>
