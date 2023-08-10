@@ -1,68 +1,65 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@1207.1209.v69351208a_5a_7">
-  <actions/>
-  <description></description>
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@2.2121.vd87fb_6536d1e"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@2.2121.vd87fb_6536d1e">
+      <jobProperties/>
+      <triggers/>
+      <parameters/>
+      <options/>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
+  <description>it is pushing docker images </description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@3536.vb_8a_6628079d5">
     <script>pipeline {
-    agent any
-    
+    agent any 
     environment {
-        DOCKER_REGISTRY = &quot;https://index.docker.io/v1/&quot;
-        DOCKER_USERNAME = &quot;chanikyavarmanalla&quot;
+        //once you sign up for Docker hub, use that user_id here
+        registry = &quot;chanikyavarmanalla/my-docker-image&quot;
+        //- update your credentials ID after creating credentials for connecting to Docker Hub
+        registryCredential = &apos;14ae160d-e567-46fc-a107-073fa8e06815&apos;
+        dockerImage = &apos;&apos;
     }
     
     stages {
-        stage(&apos;Clone Repository&apos;) {
+        stage(&apos;Cloning Git&apos;) {
             steps {
-                script {
-                    // Clone the repository
-                    checkout([$class: &apos;GitSCM&apos;, branches: [[name: &apos;*/main&apos;]], userRemoteConfigs: [[url: &quot;https://github.com/ChanikyaVarmaNalla/freestyle_demo.git&quot;]]])
-                }
+                checkout([$class: &apos;GitSCM&apos;, branches: [[name: &apos;*/main&apos;]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: &apos;&apos;, url: &apos;git@github.com:ChanikyaVarmaNalla/freestyle_demo.git&apos;]]])       
             }
         }
-        
-        stage(&apos;Build and Push Docker Image&apos;) {
-            steps {
-                script {
-                    def imageName = sh(script: &quot;grep &apos;FROM &apos; ${WORKSPACE}/Dockerfile | awk &apos;{print \$2}&apos;&quot;, returnStdout: true).trim()
-                    env.IMAGE_NAME = imageName.substring(imageName.lastIndexOf(&apos;/&apos;) + 1) // Get the last part after the last &apos;/&apos;
-                    
-                    // Build the Docker image
-                    docker.build(&quot;${DOCKER_USERNAME}/${env.IMAGE_NAME}:latest&quot;, &quot;--file ${WORKSPACE}/Dockerfile ${WORKSPACE}&quot;)
-                    
-                    // Login to Docker Hub
-                    docker.withRegistry(&quot;${DOCKER_REGISTRY}&quot;, &apos;da0a243d-d4c3-44de-bfed-64a982c8dab5&apos;) {
-                        // Push the Docker image to Docker Hub
-                        docker.image(&quot;${DOCKER_USERNAME}/${env.IMAGE_NAME}:latest&quot;).push()
-                    }
-                }
-            }
+    
+    // Building Docker images
+    stage(&apos;Building image&apos;) {
+      steps{
+        script {
+          dockerImage = docker.build registry
         }
-        
-        stage(&apos;Run Docker Image&apos;) {
-            steps {
-                script {
-                    // Run the built Docker image
-                    docker.image(&quot;${DOCKER_USERNAME}/${env.IMAGE_NAME}:latest&quot;).run(&apos;-p 8080:80 -d&apos;)
-                }
-            }
-        }
+      }
     }
     
-    post {
-        always {
-            // Clean up - stop and remove the Docker container
-            script {
-                docker.image(&quot;${DOCKER_USERNAME}/${env.IMAGE_NAME}:latest&quot;).inside(&apos;--rm&apos;, &apos;--entrypoint&apos;, &apos;&apos;) {
-                    sh &apos;docker stop container_name&apos;
-                }
+     // Uploading Docker images into Docker Hub
+    stage(&apos;Upload Image&apos;) {
+     steps{    
+         script {
+            docker.withRegistry( &apos;&apos;, registryCredential ) {
+            dockerImage.push()
             }
         }
+      }
     }
-}
-</script>
+    
+    // Running Docker container, make sure port 8096 is opened in 
+    stage(&apos;Docker Run&apos;) {
+     steps{
+         script {
+           bat &quot;docker run %registry%&quot;
+         }
+      }
+    }
+  }
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
