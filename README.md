@@ -80,3 +80,69 @@ Total 51 (delta 20), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (20/20), done.
 To github.com:ChanikyaVarmaNalla/freestyle_demo.git
    a7612bd..c9854f5  main -> main
+
+
+Task 5 Processes
+
+Step1 : docker build -t task5 .
+
+Step2 : docker images		to check if the image is build or not
+REPOSITORY                           TAG       IMAGE ID       CREATED        SIZE
+chanikyavarmanalla/my-docker-image   latest    076ab9f84862   7 hours ago    1.1GB
+task5                                latest    076ab9f84862   7 hours ago    1.1GB
+my-build-image-2                     latest    dbe66247efdb   28 hours ago   1.1GB
+my-build-image-3                     latest    dbe66247efdb   28 hours ago   1.1GB
+my-build-image-1                     latest    727f7e13fc39   28 hours ago   998MB
+my-build-image                       latest    99ecbb644815   29 hours ago   1.23GB
+
+Step3 : docker tag task5 chanikyavarmanalla/task5:latest
+
+Step4 : docker push chanikyavarmanalla/task5:latest
+The push refers to repository [docker.io/chanikyavarmanalla/task5]
+cfa2010ad0d1: Mounted from chanikyavarmanalla/my-docker-image
+5f70bf18a086: Mounted from chanikyavarmanalla/my-docker-image
+f894ad2945e1: Mounted from chanikyavarmanalla/my-docker-image
+9f675dc32926: Mounted from chanikyavarmanalla/my-docker-image
+efb139f3f261: Mounted from chanikyavarmanalla/my-docker-image
+a85edf4c031f: Mounted from chanikyavarmanalla/my-docker-image
+7788a8bbe052: Mounted from chanikyavarmanalla/my-docker-image
+3440999c544b: Mounted from chanikyavarmanalla/my-docker-image
+c5f1d4dd95f0: Mounted from chanikyavarmanalla/my-docker-image
+6a25221bdf24: Mounted from chanikyavarmanalla/my-docker-image
+b578f477cd5d: Mounted from chanikyavarmanalla/my-docker-image
+b298f9991a11: Mounted from chanikyavarmanalla/my-docker-image
+c94dc8fa3d89: Mounted from chanikyavarmanalla/my-docker-image
+latest: digest: sha256:79bac7ebddaf2d95679bd388f8c12b04412c7856f17e170cbd6d018e3ab208e1 size: 3054
+
+Step5 : docker rmi task5
+Untagged: task5:latest
+
+Step6 : docker images
+REPOSITORY                           TAG       IMAGE ID       CREATED        SIZE
+chanikyavarmanalla/my-docker-image   latest    076ab9f84862   8 hours ago    1.1GB
+chanikyavarmanalla/task5             latest    076ab9f84862   8 hours ago    1.1GB
+my-build-image-2                     latest    dbe66247efdb   28 hours ago   1.1GB
+my-build-image-3                     latest    dbe66247efdb   28 hours ago   1.1GB
+my-build-image-1                     latest    727f7e13fc39   28 hours ago   998MB
+my-build-image                       latest    99ecbb644815   29 hours ago   1.23GB
+
+Step7 : docker pull chanikyavarmanalla/task5:latest
+latest: Pulling from chanikyavarmanalla/task5
+Digest: sha256:79bac7ebddaf2d95679bd388f8c12b04412c7856f17e170cbd6d018e3ab208e1
+Status: Image is up to date for chanikyavarmanalla/task5:latest
+docker.io/chanikyavarmanalla/task5:latest
+
+What's Next?
+  View summary of image vulnerabilities and recommendations → docker scout quickview chanikyavarmanalla/task5:latest
+
+Step8 : docker images
+REPOSITORY                           TAG       IMAGE ID       CREATED        SIZE
+chanikyavarmanalla/my-docker-image   latest    076ab9f84862   8 hours ago    1.1GB
+chanikyavarmanalla/task5             latest    076ab9f84862   8 hours ago    1.1GB
+my-build-image-2                     latest    dbe66247efdb   28 hours ago   1.1GB
+my-build-image-3                     latest    dbe66247efdb   28 hours ago   1.1GB
+my-build-image-1                     latest    727f7e13fc39   28 hours ago   998MB
+my-build-image                       latest    99ecbb644815   29 hours ago   1.23GB
+
+Step9 : docker run chanikyavarmanalla/task5:latest
+Factorial = 120
