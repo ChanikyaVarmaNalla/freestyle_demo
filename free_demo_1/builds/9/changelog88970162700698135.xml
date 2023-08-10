@@ -1,9 +1,0 @@
-commit 0a6530d723c4c825feda09cf0fa266d6c05c9909
-tree 17b0a0fbfe82cce24d874690d68ad80e27e2b1e1
-parent a5846560701b925b71ea6189f9d2126d4dd91110
-author ChanikyaVarmaNalla <141623689+ChanikyaVarmaNalla@users.noreply.github.com> 2023-08-10 10:52:07 +0530
-committer GitHub <noreply@github.com> 2023-08-10 10:52:07 +0530
-
-    Update Jenkinsfile
-
-:100644 100644 e28004bd9457d21369db183e44a7677586d2f08f 6292f56d023af92c600d303a426dcaaeeb4429c3 M	Jenkinsfile
