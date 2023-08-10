@@ -1,40 +1,46 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_REGISTRY_CREDENTIALS = credentials('4a72d381-c972-4864-96fd-2862da669ec7')
+        DOCKER_IMAGE_NAME = 'my-docker-build-image'
+        GIT_REPO_URL = 'https://github.com/ChanikyaVarmaNalla/freestyle_demo.git'
+    }
+
     stages {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def dockerImageName = "my-build-image"
-                    def dockerImageTag = "latest"
-
-                    docker.build("${dockerImageName}:${dockerImageTag}", "-f Dockerfile .")
+                    def dockerImage = docker.build(DOCKER_IMAGE_NAME, '-f Dockerfile .')
                 }
             }
         }
-        
-        stage('Push to Docker Registry') {
+
+        stage('Push Docker Image') {
             steps {
                 script {
-                    def dockerImageName = "my-build-image"
-                    def dockerImageTag = "latest"
-                    def dockerRegistryUrl = "your-docker-registry-url"
-                    
-                    docker.withRegistry("https://${dockerRegistryUrl}", 'docker-credentials-id') {
-                        dockerImage.push("${dockerImageName}:${dockerImageTag}")
+                    docker.withRegistry('', DOCKER_REGISTRY_CREDENTIALS) {
+                        dockerImage.push()
                     }
                 }
             }
         }
-        
+
         stage('Run Docker Image') {
             steps {
                 script {
-                    def dockerImageName = "my-build-image"
-                    def dockerImageTag = "latest"
-                    
-                    docker.image("${dockerImageName}:${dockerImageTag}").run("-p 8080:80")
+                    docker.image(DOCKER_IMAGE_NAME).run()
                 }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up by stopping and removing the running container
+            script {
+                docker.image(DOCKER_IMAGE_NAME).stop()
+                docker.image(DOCKER_IMAGE_NAME).remove()
             }
         }
     }
