@@ -1,5 +1,5 @@
 pipeline {
-    agent any 
+    agent any
     environment {
         //once you sign up for Docker hub, use that user_id here
         registry = "chanikyavarmanalla/my-docker-image"
@@ -7,14 +7,14 @@ pipeline {
         registryCredential = '14ae160d-e567-46fc-a107-073fa8e06815'
         dockerImage = ''
     }
-    
+
     stages {
         stage('Cloning Git') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'git@github.com:ChanikyaVarmaNalla/freestyle_demo.git']]])       
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'git@github.com:ChanikyaVarmaNalla/freestyle_demo.git']]])
             }
         }
-    
+
     // Building Docker images
     stage('Building image') {
       steps{
@@ -23,10 +23,10 @@ pipeline {
         }
       }
     }
-    
+
      // Uploading Docker images into Docker Hub
     stage('Upload Image') {
-     steps{    
+     steps{
          script {
             docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
@@ -34,8 +34,8 @@ pipeline {
         }
       }
     }
-    
-    // Running Docker container, make sure port 8096 is opened in 
+
+    // Running Docker container, make sure port 8096 is opened in
     stage('Docker Run') {
      steps{
          script {

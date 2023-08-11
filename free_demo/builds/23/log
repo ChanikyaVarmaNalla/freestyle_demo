@@ -1,0 +1,26 @@
+Started by timer
+Running as SYSTEM
+Building in workspace C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url git@github.com:ChanikyaVarmaNalla/freestyle_demo.git # timeout=10
+Fetching upstream changes from git@github.com:ChanikyaVarmaNalla/freestyle_demo.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.40.0.windows.1'
+ > git.exe fetch --tags --force --progress -- git@github.com:ChanikyaVarmaNalla/freestyle_demo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+Checking out Revision fea749c54ae24f783f042142cf44ed0b8757cd82 (refs/remotes/origin/master)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f fea749c54ae24f783f042142cf44ed0b8757cd82 # timeout=10
+Commit message: "First Commit"
+ > git.exe rev-list --no-walk fea749c54ae24f783f042142cf44ed0b8757cd82 # timeout=10
+[free_demo] $ cmd /c call C:\Users\CHANIK~1\AppData\Local\Temp\jenkins6104953582353914094.bat
+
+C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo>echo "Hello! Jenkins, 11-08-2023 10:35:04.82" 
+"Hello! Jenkins, 11-08-2023 10:35:04.82"
+
+C:\Users\ChanikyaN-3227\.jenkins\workspace\free_demo>exit 0 
+Finished: SUCCESS
